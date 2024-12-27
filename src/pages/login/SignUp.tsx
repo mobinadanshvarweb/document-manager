@@ -23,7 +23,7 @@ const SignUp = () => {
     } else {
       setError("");
       dispatch(setSignUp());
-      navigate("/");
+      navigate("/dashboard");
     }
   };
   return (

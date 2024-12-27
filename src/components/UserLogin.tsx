@@ -36,7 +36,11 @@ const UserLogin: React.FC<UserLoginProps> = ({
           action={actionPass}
           value={passValue}
         />
-        <Button text={text} onClickHandler={onClickHandler} />
+        <Button
+          text={text}
+          onClickHandler={onClickHandler}
+          className="justify-center border bg-custombutton hover:bg-customtext hover:text-custombutton"
+        />
         {error && (
           <span className="text-xs font-bold text-red-800" aria-live="polite">
             {error}
