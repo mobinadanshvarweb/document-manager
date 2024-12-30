@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { act } from "react";
-
 interface File {
   id: number;
   name: string;
@@ -11,10 +9,18 @@ interface File {
 
 export interface FileState {
   file: File[];
+  searchFile: File[];
 }
 
 const initialState: FileState = {
   file: (() => {
+    try {
+      return JSON.parse(localStorage.getItem("files") || "[]");
+    } catch {
+      return [];
+    }
+  })(),
+  searchFile: (() => {
     try {
       return JSON.parse(localStorage.getItem("files") || "[]");
     } catch {
@@ -34,6 +40,13 @@ export const fileSlice = createSlice({
       state.file.push(fileWithId);
       localStorage.setItem("files", JSON.stringify(state.file));
     },
+    setSearch: (state, action) => {
+      state.searchFile = state.file.filter((item) =>
+        item.name
+          .toLocaleLowerCase()
+          .includes(action.payload.toLocaleLowerCase())
+      );
+    },
     removeFile: (state, action: PayloadAction<number>) => {
       state.file = state.file.filter((item) => item.id !== action.payload);
       localStorage.setItem("files", JSON.stringify(state.file));
@@ -42,6 +55,6 @@ export const fileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addFile, removeFile } = fileSlice.actions;
+export const { addFile, setSearch, removeFile } = fileSlice.actions;
 
 export default fileSlice.reducer;

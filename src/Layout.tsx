@@ -7,11 +7,12 @@ import "./index.css";
 import SideLink from "./components/SideLink";
 import Button from "./components/Button";
 import Profile from "./pages/profile/Profile";
-import SearchDashboard from "./pages/dashboard/SearchDashboard";
+
 import Calender from "./components/Calender";
 import { IoAdd } from "react-icons/io5";
 import { useState } from "react";
 import Modal from "./components/Modal";
+import SearchDashboard from "./components/Search";
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -82,7 +83,9 @@ const Layout = () => {
               </div>
             </>
           )}
-          <Outlet />
+          <div className="flex justify-center items-center">
+            <Outlet />
+          </div>
         </div>
         {modal && <Modal setModal={setModal} />}
       </div>

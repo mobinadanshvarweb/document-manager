@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setSearch } from "../redux/slices/file-slice";
 
 const SearchDashboard: React.FC = () => {
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center p-2 w-full max-w-md">
       <svg
@@ -20,6 +23,9 @@ const SearchDashboard: React.FC = () => {
       <input
         type="text"
         placeholder="Search..."
+        onChange={(e) => {
+          dispatch(setSearch(e.target.value));
+        }}
         className="w-full p-2 border-none focus:outline-none bg-custombg"
       />
     </div>
