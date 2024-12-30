@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { IoHomeOutline } from "react-icons/io5";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { TbLogout2 } from "react-icons/tb";
@@ -15,7 +15,6 @@ import Modal from "./components/Modal";
 
 const Layout = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [modal, setModal] = useState(false);
   return (
     <div className="w-full flex min-h-screen">
@@ -30,20 +29,13 @@ const Layout = () => {
                 text="Dashboard"
                 href="/dashboard"
                 icon={<IoHomeOutline />}
-                isActive={location.pathname.endsWith("dashboard")}
               />
               <SideLink
                 text="Documentation"
                 href="/document"
                 icon={<HiOutlineDocumentDuplicate />}
-                isActive={location.pathname.endsWith("document")}
               />
-              <SideLink
-                text="Setting"
-                href="/setting"
-                icon={<LuSettings />}
-                isActive={location.pathname.endsWith("setting")}
-              />
+              <SideLink text="Setting" href="/setting" icon={<LuSettings />} />
             </ul>
           </div>
 

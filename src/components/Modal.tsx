@@ -32,6 +32,7 @@ const Modal = ({ setModal }: { setModal: (x: boolean) => { x: boolean } }) => {
       dispatch(addFile(fileData));
       alert("File uploaded successfully!");
     };
+    setModal(false);
   };
 
   return (

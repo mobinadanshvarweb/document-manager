@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { act } from "react";
 
 interface File {
   id: number;
@@ -33,10 +34,14 @@ export const fileSlice = createSlice({
       state.file.push(fileWithId);
       localStorage.setItem("files", JSON.stringify(state.file));
     },
+    removeFile: (state, action: PayloadAction<number>) => {
+      state.file = state.file.filter((item) => item.id !== action.payload);
+      localStorage.setItem("files", JSON.stringify(state.file));
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addFile } = fileSlice.actions;
+export const { addFile, removeFile } = fileSlice.actions;
 
 export default fileSlice.reducer;
