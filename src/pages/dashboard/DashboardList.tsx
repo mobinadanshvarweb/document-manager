@@ -3,7 +3,7 @@ import { RootState } from "../../redux/store";
 import DashboardCart from "./DashboardCart";
 
 const DashboardList = () => {
-  const files = useSelector((state: RootState) => state.file.searchFile);
+  const files = useSelector((state: RootState) => state.file.filterAndSearch);
   return (
     <div>
       {files.length < 1 ? (

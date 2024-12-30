@@ -3,7 +3,7 @@ import { RootState } from "../../redux/store";
 import DocumentCart from "./DocumentCart";
 
 const DocumentList = () => {
-  const files = useSelector((state: RootState) => state.file.searchFile);
+  const files = useSelector((state: RootState) => state.file.filterAndSearch);
 
   return (
     <div className="w-full flex flex-col gap-4">

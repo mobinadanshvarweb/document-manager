@@ -9,7 +9,9 @@ interface File {
 
 export interface FileState {
   file: File[];
-  searchFile: File[];
+  filterAndSearch: File[];
+  search: string;
+  filter: string;
 }
 
 const initialState: FileState = {
@@ -20,13 +22,15 @@ const initialState: FileState = {
       return [];
     }
   })(),
-  searchFile: (() => {
+  filterAndSearch: (() => {
     try {
       return JSON.parse(localStorage.getItem("files") || "[]");
     } catch {
       return [];
     }
   })(),
+  search: "",
+  filter: "",
 };
 
 export const fileSlice = createSlice({
@@ -41,10 +45,27 @@ export const fileSlice = createSlice({
       localStorage.setItem("files", JSON.stringify(state.file));
     },
     setSearch: (state, action) => {
-      state.searchFile = state.file.filter((item) =>
-        item.name
-          .toLocaleLowerCase()
-          .includes(action.payload.toLocaleLowerCase())
+      state.search = action.payload;
+      state.filterAndSearch = state.file.filter(
+        (item) =>
+          (item.name
+            .toLocaleLowerCase()
+            .includes(state.search.toLocaleLowerCase()) ||
+            state.search === "") &&
+          (item.type.slice(-3).toLocaleLowerCase().includes(state.filter) ||
+            state.filter == "")
+      );
+    },
+    setFilter: (state, action) => {
+      state.filter = action.payload;
+      state.filterAndSearch = state.file.filter(
+        (item) =>
+          (item.name
+            .toLocaleLowerCase()
+            .includes(state.search.toLocaleLowerCase()) ||
+            state.search === "") &&
+          (item.type.slice(-3).toLocaleLowerCase().includes(state.filter) ||
+            state.filter == "")
       );
     },
     removeFile: (state, action: PayloadAction<number>) => {
@@ -55,6 +76,6 @@ export const fileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addFile, setSearch, removeFile } = fileSlice.actions;
+export const { addFile, setSearch, setFilter, removeFile } = fileSlice.actions;
 
 export default fileSlice.reducer;
