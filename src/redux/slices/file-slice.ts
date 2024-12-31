@@ -14,6 +14,7 @@ export interface FileState {
   search: string;
   filter: string;
   sort: string;
+  check: boolean;
 }
 
 const initialState: FileState = {
@@ -34,6 +35,7 @@ const initialState: FileState = {
   search: "",
   filter: "",
   sort: "",
+  check: false,
 };
 
 export const fileSlice = createSlice({
@@ -90,7 +92,9 @@ export const fileSlice = createSlice({
 
       state.filterAndSearch = sortedFiles;
     },
-
+    setCheck: (state) => {
+      state.check = !state.check;
+    },
     removeFile: (state, action: PayloadAction<number>) => {
       state.file = state.file.filter((item) => item.id !== action.payload);
       state.filterAndSearch = state.filterAndSearch.filter(
@@ -99,11 +103,24 @@ export const fileSlice = createSlice({
 
       localStorage.setItem("files", JSON.stringify(state.file));
     },
+    deleteAll: (state) => {
+      state.file = [];
+      state.filterAndSearch = [];
+      state.check = false;
+      localStorage.setItem("files", JSON.stringify(state.file));
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addFile, setSearch, setFilter, setSort, removeFile } =
-  fileSlice.actions;
+export const {
+  addFile,
+  setSearch,
+  setFilter,
+  setSort,
+  setCheck,
+  removeFile,
+  deleteAll,
+} = fileSlice.actions;
 
 export default fileSlice.reducer;

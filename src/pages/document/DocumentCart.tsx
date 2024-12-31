@@ -3,11 +3,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FileProps } from "../../types/file-type";
 import PopUp from "../../components/PopUp";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { removeFile } from "../../redux/slices/file-slice";
+import { RootState } from "../../redux/store";
 const DocumentCart: React.FC<FileProps> = ({ name, type, id }) => {
   const dispatch = useDispatch();
+  const check = useSelector((state: RootState) => state.file.check);
   const [showPop, setShowPop] = useState(false);
   const newType = type.slice(-3);
   const HandleDelete = () => {
@@ -17,7 +19,12 @@ const DocumentCart: React.FC<FileProps> = ({ name, type, id }) => {
   return (
     <div className="w-full py-2 px-4 rounded-lg shadow bg-white flex justify-between items-center gap-4">
       <div className="flex gap-4">
-        <input type="checkbox" className="cursor-pointer" />
+        <input
+          type="checkbox"
+          className="cursor-pointer"
+          checked={check}
+          readOnly
+        />
         <span
           className={`w-8 h-8 rounded-full text-white flex justify-center items-center cursor-default font-bold ${
             newType === "pdf"
