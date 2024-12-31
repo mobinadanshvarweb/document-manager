@@ -3,3 +3,8 @@ export enum FilterEnum {
   pdf = " Pdf ",
   eet = "Xlcx ",
 }
+
+export enum SortEnum {
+  Latest = "latest",
+  Earliest = "earliest",
+}

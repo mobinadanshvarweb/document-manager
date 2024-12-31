@@ -1,4 +1,6 @@
 import Select from "../../components/Select";
+import { FilterEnum, SortEnum } from "../../enums/filter-enum";
+import { setFilter, setSort } from "../../redux/slices/file-slice";
 import DashboardList from "./DashboardList";
 
 const Dashboard = () => {
@@ -8,22 +10,17 @@ const Dashboard = () => {
         <div className="text-customtext font-bold text-md">
           Last modifide documents
         </div>
-        <div className="flex-1 flex justify-end r items-center relative">
-          <Select />
-          {/* <span>|||</span>
-          <div className="absolute flex flex-col w-36 bg-white rounded-lg shadow px-4 py-2 top-[100%]">
-            <div className="border-b cursor-pointer py-1">PDF</div>
-            <div className="border-b cursor-pointer py-1">DOCX</div>
-            <div className="border-b cursor-pointer py-1">XLSX</div>
-            <div className=" cursor-pointer py-1">TXT</div>
-          </div> */}
+        <div className="flex-1 flex justify-end gap-4 items-center relative">
+          <Select action={setSort} customEnum={SortEnum} text="Sort" />
+          <Select
+            action={setFilter}
+            customEnum={FilterEnum}
+            text="Select Filter"
+          />
         </div>
       </div>
       <div className="w-full">
         <DashboardList />
-      </div>
-      <div className="w-full flex justify-center cursor-pointer items-center text-customtext">
-        + View More
       </div>
     </div>
   );

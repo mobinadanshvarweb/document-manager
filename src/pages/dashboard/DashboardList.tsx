@@ -24,6 +24,11 @@ const DashboardList = () => {
               />
             );
           })}
+          {files.length > 4 && (
+            <div className="w-full flex justify-center cursor-pointer items-center text-customtext">
+              + View More
+            </div>
+          )}
         </div>
       )}
     </div>
