@@ -23,6 +23,7 @@ const DocumentList = () => {
                 type={file.type}
                 key={file.id}
                 size={file.size}
+                content={file.content}
               />
             );
           })}

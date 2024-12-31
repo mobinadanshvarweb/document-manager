@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { removeFile } from "../../redux/slices/file-slice";
 import { RootState } from "../../redux/store";
-const DocumentCart: React.FC<FileProps> = ({ name, type, id }) => {
+const DocumentCart: React.FC<FileProps> = ({ name, type, id, content }) => {
   const dispatch = useDispatch();
   const check = useSelector((state: RootState) => state.file.check);
   const [showPop, setShowPop] = useState(false);
@@ -15,6 +15,18 @@ const DocumentCart: React.FC<FileProps> = ({ name, type, id }) => {
   const HandleDelete = () => {
     dispatch(removeFile(id));
     setShowPop(false);
+  };
+  const HandleDownload = () => {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
   return (
     <div className="w-full py-2 px-4 rounded-lg shadow bg-white flex justify-between items-center gap-4">
@@ -71,10 +83,15 @@ const DocumentCart: React.FC<FileProps> = ({ name, type, id }) => {
         </span>
       </div>
       <div className="flex gap-2 items-center">
-        <span className="p-1 hover:bg-customgray hover:text-white duration-500 rounded cursor-pointer border border-customgray flex justify-center items-center text-customgray">
+        <span
+          title="Download"
+          onClick={HandleDownload}
+          className="p-1 hover:bg-customgray hover:text-white duration-500 rounded cursor-pointer border border-customgray flex justify-center items-center text-customgray"
+        >
           <LuDownload />
         </span>
         <span
+          title="Delete"
           onClick={() => {
             setShowPop(true);
           }}
