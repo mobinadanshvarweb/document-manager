@@ -1,9 +1,7 @@
-import UserLogin from "../../components/UserLogin";
-
 const Login = () => {
   return (
     <div className="w-full">
-      <UserLogin
+      {/* <UserLogin
         textType="text"
         userPlaceholder="User Name"
         passPlaceholder="Password"
@@ -14,7 +12,7 @@ const Login = () => {
         passValue=""
         linkText="Don't have account? SginUp"
         link="/sginup"
-      />
+      /> */}
     </div>
   );
 };

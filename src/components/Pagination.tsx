@@ -1,7 +1,15 @@
 import { useDispatch } from "react-redux";
 import { setCurrentPage } from "../redux/slices/file-slice";
 
-const Pagination = ({ current, total, item }) => {
+const Pagination = ({
+  current,
+  total,
+  item,
+}: {
+  current: number;
+  total: number;
+  item: number;
+}) => {
   const dispatch = useDispatch();
   const totalPages = Math.ceil(total / item);
 
