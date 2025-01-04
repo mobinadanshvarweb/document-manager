@@ -5,7 +5,7 @@ interface File {
   name: string;
   size: number;
   type: string;
-  content: string | ArrayBuffer;
+  content: string | ArrayBuffer | null;
 }
 
 export interface FileState {

@@ -17,6 +17,7 @@ import SearchDashboard from "./components/Search";
 const Layout = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+
   return (
     <div className="w-full flex min-h-screen">
       <div className="w-56 min-h-screen bg-white  flex flex-col px-4">

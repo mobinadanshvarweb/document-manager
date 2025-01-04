@@ -4,7 +4,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addFile } from "../redux/slices/file-slice";
 
-const Modal = ({ setModal }: { setModal: (x: boolean) => { x: boolean } }) => {
+interface ModalProps {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const Modal = ({ setModal }: ModalProps) => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);

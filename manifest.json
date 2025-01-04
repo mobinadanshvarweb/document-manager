@@ -1,0 +1,23 @@
+{
+  "short_name": "DC Manager",
+  "name": "Document Manager Web App",
+  "description": "you can save your text-based document",
+  "icons": [
+    {
+      "src": "/public/img/i.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/public/img/i.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait"
+}
