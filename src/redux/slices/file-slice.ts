@@ -15,6 +15,10 @@ export interface FileState {
   filter: string;
   sort: string;
   check: boolean;
+  currentPage: number;
+  currentItem: number;
+  cPage: number;
+  cItem: number;
 }
 
 const initialState: FileState = {
@@ -36,6 +40,10 @@ const initialState: FileState = {
   filter: "",
   sort: "",
   check: false,
+  currentPage: 1,
+  currentItem: 5,
+  cPage: 1,
+  cItem: 5,
 };
 
 export const fileSlice = createSlice({
@@ -95,18 +103,37 @@ export const fileSlice = createSlice({
     setCheck: (state) => {
       state.check = !state.check;
     },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      if (action.payload < state.currentPage) {
+        state.currentItem = state.currentItem - 5;
+      } else {
+        state.currentItem = state.currentItem + 5;
+      }
+      state.currentPage = action.payload;
+    },
+    setCPage: (state, action: PayloadAction<number>) => {
+      state.cItem = action.payload;
+    },
     removeFile: (state, action: PayloadAction<number>) => {
       state.file = state.file.filter((item) => item.id !== action.payload);
       state.filterAndSearch = state.filterAndSearch.filter(
         (item) => item.id !== action.payload
       );
-
+      if (
+        state.filterAndSearch.slice(state.currentItem - 5, state.currentItem)
+          .length === 0
+      ) {
+        state.currentPage = state.currentPage - 1;
+        state.currentItem = state.currentItem - 5;
+      }
       localStorage.setItem("files", JSON.stringify(state.file));
     },
     deleteAll: (state) => {
       state.file = [];
       state.filterAndSearch = [];
       state.check = false;
+      state.currentPage = 1;
+      state.currentItem = 5;
       localStorage.setItem("files", JSON.stringify(state.file));
     },
   },
@@ -119,6 +146,8 @@ export const {
   setFilter,
   setSort,
   setCheck,
+  setCurrentPage,
+  setCPage,
   removeFile,
   deleteAll,
 } = fileSlice.actions;

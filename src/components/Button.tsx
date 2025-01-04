@@ -6,9 +6,11 @@ const Button: React.FC<ButtonProps> = ({
   onClickHandler,
   icon,
   className,
+  disabled,
 }) => {
   return (
     <button
+      disabled={disabled}
       className={`w-full gap-2  duration-500
         rounded-lg py-2 flex items-center text-customtext font-semibold ${className}`}
       onClick={onClickHandler}

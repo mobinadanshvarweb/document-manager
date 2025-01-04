@@ -10,8 +10,6 @@ const DeleteAllDocument = () => {
   const [recycel, setRecycel] = useState(false);
   const [showPop, setShowPop] = useState(false);
   const HandleDelete = () => {
-    console.log("divkdsivok");
-
     dispatch(deleteAll());
   };
   return (

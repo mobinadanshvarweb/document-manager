@@ -3,4 +3,5 @@ export type ButtonProps = {
   onClickHandler: () => void;
   icon?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
 };
