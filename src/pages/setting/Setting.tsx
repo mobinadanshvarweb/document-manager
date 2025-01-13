@@ -1,5 +1,5 @@
 const Setting = () => {
-  return <div>Setting</div>;
+  return <div className="w-full flex justify-center">Setting</div>;
 };
 
 export default Setting;

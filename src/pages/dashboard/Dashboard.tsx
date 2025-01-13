@@ -6,7 +6,7 @@ import DashboardList from "./DashboardList";
 const Dashboard = () => {
   return (
     <div className="w-[90%] p-3 bg-white rounded-lg flex flex-col shadow border-customgray">
-      <div className="flex justify-between p-1 border-b border-gray-300 items-center">
+      <div className="flex flex-col lg:flex-row justify-between p-1 border-b border-gray-300 items-center">
         <div className="text-customtext font-bold text-md">
           Last modifide documents
         </div>

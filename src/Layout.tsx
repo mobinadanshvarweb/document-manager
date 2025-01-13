@@ -20,7 +20,7 @@ const Layout = () => {
 
   return (
     <div className="w-full flex min-h-screen">
-      <div className="w-56 min-h-screen bg-white  flex flex-col px-4">
+      <div className="w-56 min-h-screen bg-white hidden lg:flex flex-col px-4">
         <div className="h-screen flex flex-col">
           <div className="flex flex-col justify-center items-center flex-1">
             <div className="w-full h-2/5 flex justify-center items-center">
@@ -53,6 +53,21 @@ const Layout = () => {
       </div>
 
       <div className="flex-1 bg-custombg">
+        <div className="w-full flex lg:hidden justify-between px-10 py-2 items-center bg-white">
+          <div className="">
+            <Profile />
+          </div>
+          <div className="">
+            <Button
+              icon={<TbLogout2 />}
+              className="hover:bg-custombg"
+              text={`Logout`}
+              onClickHandler={() => {
+                navigate("/login");
+              }}
+            />
+          </div>
+        </div>
         <div className="w-full  flex flex-col gap-8 min-h-screen p-10">
           {!location.pathname.endsWith("setting") && (
             <>
@@ -84,8 +99,27 @@ const Layout = () => {
               </div>
             </>
           )}
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center min-h-screen">
             <Outlet />
+            <div className="fixed bottom-0 left-0 px-4 bg-white w-full shadow-inner flex lg:hidden">
+              <ul className="w-full  flex justify-between  gap-4">
+                <SideLink
+                  text="Dashboard"
+                  href="/dashboard"
+                  icon={<IoHomeOutline />}
+                />
+                <SideLink
+                  text="Documentation"
+                  href="/document"
+                  icon={<HiOutlineDocumentDuplicate />}
+                />
+                <SideLink
+                  text="Setting"
+                  href="/setting"
+                  icon={<LuSettings />}
+                />
+              </ul>
+            </div>
           </div>
         </div>
         {modal && <Modal setModal={setModal} />}

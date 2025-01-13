@@ -10,7 +10,7 @@ const SideLink: React.FC<SideLinkProps> = ({ text, icon, href }) => {
       }
     >
       <li
-        className={`w-full flex items-center rounded gap-2 p-2 duration-500 text-customtext hover:bg-custombg 
+        className={`w-full flex flex-col lg:flex-row items-center rounded gap-2 p-2 duration-500 text-customtext hover:bg-custombg 
           
            `}
       >

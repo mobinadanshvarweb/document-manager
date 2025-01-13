@@ -22,7 +22,7 @@ const Select: React.FC<EnumProps> = ({ customEnum, action, text }) => {
       }}
       name=""
       id=""
-      className="min-w-48 outline-none px-2 py-2 shadow-inner rounded bg-custombg text-xs text-custompurpule"
+      className="lg:min-w-48 outline-none px-2 py-2 shadow-inner rounded bg-custombg text-xs text-custompurpule"
     >
       <option value="">{text}</option>
       {filterEnum.map((item) => (

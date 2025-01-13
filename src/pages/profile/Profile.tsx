@@ -12,11 +12,13 @@ const Profile = () => {
   }
   const userName = parsedUser.user || "Unknown User";
   return (
-    <div className="w-full flex justify-center items-center flex-col cursor-default gap-2">
-      <div className="w-20 h-20 border rounded-full">
+    <div className="w-full flex justify-center items-center flex-col cursor-default lg:gap-2">
+      <div className="w-6 h-6 lg:w-20 lg:h-20 border rounded-full">
         <img src="/img/user.png" alt="" />
       </div>
-      <p className="font-semibold text-lg text-customtext">{userName}</p>
+      <p className="font-semibold text-xs lg:text-lg text-customtext">
+        {userName}
+      </p>
     </div>
   );
 };
